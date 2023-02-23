@@ -10,6 +10,6 @@
   <table-filter match-catalog="instituto" match-schema="dbo" match-name="profesor"/>
   <table-filter match-catalog="instituto" match-schema="dbo" match-name="profesormodulo"/>
   <table-filter match-catalog="instituto" match-schema="dbo" match-name="provincia"/>
-  <table-filter match-catalog="instituto" match-schema="dbo" match-name="sysdiagrams"/>
+  
   <table-filter match-catalog="instituto" match-schema="dbo" match-name="tiposbasicos"/>
 </hibernate-reverse-engineering>
