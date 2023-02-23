@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -34,7 +35,7 @@ public class Profesor implements java.io.Serializable {
 	private String ape1;
 	private String ape2;
 	private String tipoFuncionario;
-	private Set<ContactInfo> contactInfos = new HashSet<ContactInfo>(0);
+	private ContactInfo contactInfo;
 	private Set<Modulo> modulos = new HashSet<Modulo>(0);
 	
 
@@ -47,13 +48,15 @@ public class Profesor implements java.io.Serializable {
 		this.ape2 = ape2;
 	}
 
-	public Profesor(String nombre, String ape1, String ape2, String tipoFuncionario, Set<ContactInfo> contactInfos,
+	public Profesor(String nombre, String ape1, String ape2, String tipoFuncionario,
+			ContactInfo
+contactInfo,
 			Set<Modulo> modulos) {
 		this.nombre = nombre;
 		this.ape1 = ape1;
 		this.ape2 = ape2;
 		this.tipoFuncionario = tipoFuncionario;
-		this.contactInfos = contactInfos;
+		this.contactInfo = contactInfo;
 		this.modulos = modulos;
 	}
 
@@ -105,13 +108,13 @@ public class Profesor implements java.io.Serializable {
 		this.tipoFuncionario = tipoFuncionario;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "profesor")
-	public Set<ContactInfo> getContactInfos() {
-		return this.contactInfos;
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "profesor")
+	public ContactInfo getContactInfo() {
+		return this.contactInfo;
 	}
 
-	public void setContactInfos(Set<ContactInfo> contactInfos) {
-		this.contactInfos = contactInfos;
+	public void setContactInfo(ContactInfo contactInfo) {
+		this.contactInfo = contactInfo;
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -126,6 +129,12 @@ public class Profesor implements java.io.Serializable {
 
 	public void setModulos(Set<Modulo> modulos) {
 		this.modulos = modulos;
+	}
+
+	@Override
+	public String toString() {
+		return "Profesor [id=" + id + ", nombre=" + nombre + ", ape1=" + ape1 + ", ape2=" + ape2 + ", tipoFuncionario="
+				+ tipoFuncionario + ", contactInfo=" + contactInfo + "]";
 	}
 
 	

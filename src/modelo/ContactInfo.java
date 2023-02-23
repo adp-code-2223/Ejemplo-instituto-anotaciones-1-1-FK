@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -56,8 +56,8 @@ public class ContactInfo implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "profesorId", unique = true, nullable = false)
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "profesorId", unique = true, nullable = false, updatable=false)
 	public Profesor getProfesor() {
 		return this.profesor;
 	}
@@ -83,5 +83,12 @@ public class ContactInfo implements java.io.Serializable {
 	public void setTlfMovil(String tlfMovil) {
 		this.tlfMovil = tlfMovil;
 	}
+
+	@Override
+	public String toString() {
+		return "ContactInfo [id=" + id + ", profesor-id=" + profesor.getId() + ", email=" + email + ", tlfMovil=" + tlfMovil + "]";
+	}
+	
+	
 
 }

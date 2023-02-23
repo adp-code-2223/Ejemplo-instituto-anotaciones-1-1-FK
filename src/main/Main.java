@@ -13,6 +13,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 import modelo.Ciclo;
+import modelo.ContactInfo;
 import modelo.Profesor;
 import util.ProfeInfo;
 import util.SessionFactoryUtil;
@@ -230,6 +231,25 @@ public class Main {
 				System.err.println("Ha ocurrido una exception: " + e.getMessage());
 				e.printStackTrace();
 			}
+
+		}
+		
+		{
+
+			System.out.println("----------- Q20: Profes -----------");
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			Date dateFrom;
+			
+				
+				Query<ContactInfo> queryContacts = session
+						.createQuery("SELECT p.contactInfo from Profesor p");
+				
+						
+				List<ContactInfo> contactos = queryContacts.list();
+				for (ContactInfo c : contactos) {
+					System.out.println(c);
+				}
+			
 
 		}
 
